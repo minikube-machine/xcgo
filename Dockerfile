@@ -41,19 +41,19 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
 # unpack it in the proper place.
 RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core' | jq '.download_url' -r) --output core.snap
 RUN mkdir -p /snap/core
-RUN unsquashfs -d /snap/core/current core.snap
+RUN unsquashfs -no-exit-code -d /snap/core/current core.snap
 
 # Grab the core18 snap (which snapcraft uses as a base) from the stable channel
 # and unpack it in the proper place.
 RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core18' | jq '.download_url' -r) --output core18.snap
 RUN mkdir -p /snap/core18
-RUN unsquashfs -d /snap/core18/current core18.snap
+RUN unsquashfs -no-exit-code -d /snap/core18/current core18.snap
 
 # Grab the snapcraft snap from the stable channel and unpack it in the proper
 # place.
 RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/snapcraft?channel=stable' | jq '.download_url' -r) --output snapcraft.snap
 RUN mkdir -p /snap/snapcraft
-RUN unsquashfs -d /snap/snapcraft/current snapcraft.snap
+RUN unsquashfs -no-exit-code -d /snap/snapcraft/current snapcraft.snap
 
 # Create a snapcraft runner
 RUN mkdir -p /snap/bin
