@@ -26,6 +26,8 @@ ARG UBUNTU
 # want ubuntu:bionic (some things we want, e.g. go1.14, don't have good
 # packages for xenial at the time of writing).
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # This section lifted from snapcore/snapcraft:stable
 # Grab dependencies
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
@@ -111,6 +113,8 @@ FROM golangcore AS devtools
 # Dependencies for https://github.com/tpoechtrager/osxcross and some
 # other stuff.
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     clang \
@@ -176,6 +180,9 @@ WORKDIR /root
 
 ####################  docker  ####################
 FROM osx-cross AS docker
+
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
     apt-transport-https \
     ca-certificates \
