@@ -13,7 +13,7 @@ ARG LIBTOOL_BASEURL="https://github.com/neilotoole/xcgo/releases/download/v0.1"
 ARG GOLANGCI_LINT_VERSION="1.42.1"
 ARG GORELEASER_VERSION="0.182.1"
 ARG GO_VERSION=""
-ARG UBUNTU=bionic
+ARG UBUNTU=jammy
 
 
 
